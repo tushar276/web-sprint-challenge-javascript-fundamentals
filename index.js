@@ -209,7 +209,7 @@ CuboidMaker.prototype.volume = function()
     return (( this.length * this.width ) + ( this.length * this.height ) + ( this.width * this.height )) * 2;
 
   }
-
+  
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker 🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
