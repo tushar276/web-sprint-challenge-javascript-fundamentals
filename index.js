@@ -17,7 +17,8 @@ myFunction();
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
-
+// nestedFunction can access the variable internal because internal variable scope is myFunction() and nestedFunction() variable
+// scope is also myFunction() since both are same scope level, nestedFunction() can access that variable 
 
 
 
@@ -28,8 +29,14 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(/*Your Code Here*/) {
-  /*Your Code Here*/
+function summation(number)
+ {
+  var total = 0;
+  for (var index = 1; index <= number; index ++)
+  {
+    total += index;
+  }
+   return total;
 
   }
  
@@ -56,9 +63,15 @@ const zooAnimals = [
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
+  function animalNames(animalNames){
+      var displayNames = [];
+      animalNames.forEach(function(animal) {
+        displayNames.push("name: " + animal.animal_name + ", scientific: " + animal.scientific_name);
+      });
+  
+      return displayNames;
+    }
+  
   
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
@@ -67,8 +80,16 @@ const zooAnimals = [
   For example: ['jackal, asiatic', .....]
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowerCaseNames(animalNames)
+  {
+    var animalNamesLowerCase = [];
+
+    animalNamesLowerCase = animalNames.map(function(animal)
+    {
+      return animal.animal_name.toLowerCase();
+    });
+
+    return animalNamesLowerCase;
   }
   
   
@@ -77,19 +98,31 @@ const zooAnimals = [
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowPopulationAnimals(animalNames)
+  {
+    var lowPopulationAnimals = [];
+    const populationSize = 5;
+    lowPopulationAnimals = animalNames.filter(function(animal)
+    {
+      return animal.population < populationSize;
+    } );
+     return lowPopulationAnimals;
   }
-  
-
+    
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
   Using USApop find the total population from the zoos array using the .reduce() method. 
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
-  function USApop(/*Your Code Here*/){
-    /*Your Code Here*/
+  function USApop(animalNames)
+  {
+    var totalPopulation = 0;
+    totalPopulation = animalNames.reduce(function(runningPopulation, animal)
+    {
+      return animal.population + runningPopulation;
+    } , 0 );
+    return totalPopulation;
   }
   
   
@@ -101,35 +134,40 @@ const zooAnimals = [
     * The consume function should return the invocation of cb, passing a and b into cb as arguments
   */
 
-  function consume(/*Your Code Here */){
-    /*Your Code Here */
+  function consume(val1, val2, myfunc)
+  {
+    return myfunc(val1, val2);
   }
  
   
   /* 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁 */
  // 🦁🦁🦁 Use add to return the sum of two numbers 🦁🦁🦁
   
-function add(/*Your Code Here */){
-    /*Your Code Here*/
-  }
+function add(val1, val2)
+{
+  return val1 + val2;
+}
 
 // 🦁🦁🦁 Use multiply to return the product of two numbers 🦁🦁🦁
   
-function multiply(/*Your Code Here */){
-   /*Your Code Here */
-  }
+function multiply(val1, val2)
+{
+   return val1 * val2;
+}
 
  // 🦁🦁🦁 Use greeting to accept a first and last name and return "Hello {first-name} {last-name}, nice to meet you!" 🦁🦁🦁
   
-function greeting(/*Your Code Here */){
-   return /*Your Code Here */
+function greeting(firstName, lastName)
+{
+   return "Hello "+ firstName + " " +lastName + ", nice to meet you!";
+
   }
   
   // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
   // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-  // console.log(consume(2, 2, add)); // 4
-  // console.log(consume(10, 16, multiply)); // 160
-  // console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
+   console.log(consume(2, 2, add)); // 4
+   console.log(consume(10, 16, multiply)); // 160
+   console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
   
   
 // 🦁💪 Stretch: If you haven't already, convert your array method callbacks into arrow functions - make sure you comment out this section before you submit your work 🦁💪
